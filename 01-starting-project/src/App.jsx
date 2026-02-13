@@ -33,11 +33,12 @@ function App() {
   return (
     <div>
       <Header />
+
       <main> 
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            {CORE_CONCEPTS.map((concept) =><CoreConcepts  {...concept} />)}
+            {CORE_CONCEPTS.map((concept) =><CoreConcepts key={concept.title}  {...concept} />)}
             {/* <CoreConcepts {...CORE_CONCEPTS[0]} />
             <CoreConcepts {...CORE_CONCEPTS[1]} />
             <CoreConcepts {...CORE_CONCEPTS[2]} />
