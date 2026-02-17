@@ -5,21 +5,21 @@ import Log from "./components/log";
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const [activeplayer,setActivePlayer] = useState('X');
-   
-   function handleSelect(rowIndex,colIndex){
-    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X' ));
-    setGameTurns((prevTurns) => {
-      let currentPlayer= 'X';
+  // const [activeplayer,setActivePlayer] = useState('X');
+   let currentPlayer= 'X';
 
       if (prevTurns.length>0 && prevTurns[0].Player === 'X') {
         currentPlayer = 'O';
       }
 
+  function handleSelect(rowIndex,colIndex){
+    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X' ));
+    setGameTurns((prevTurns) => {
+      
 
       const updatedTurns = [
        {square: {row:rowIndex,col:colIndex},Player: currentPlayer},
-    ...prevTurns
+    ...prevTurns,
   ];
   return updatedTurns;
       });
@@ -36,7 +36,7 @@ function App() {
       onSelectSquare={handleSelect} 
       turns={gameTurns}/>
     </div>
-    <Log/>
+    <Log turns={gameTurns}/>
    </main>
 }
 
