@@ -3,6 +3,8 @@ import Player from "./components/Player";
 import GameBoard from "./components/Gameboard";
 import Log from "./components/log";
 import { WINNING_COMBINATIONS } from "./winningcombo";
+import GameOver from "./components/GameOver";
+
 
 const initialGame = [
   [null, null, null],
@@ -38,6 +40,9 @@ function App() {
   }
 
   let Winner;
+
+
+
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquare = gameBoard[combination[0].row][combination[0].column];
     const secondSquare = gameBoard[combination[1].row][combination[1].column];
@@ -48,6 +53,9 @@ function App() {
       Winner = firstSquare;
     }
   }
+
+  let hasDraw = gameTurns.length ===9 && !Winner;
+
   function handleSelect(rowIndex, colIndex) {
     // setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X' ));
     setGameTurns((prevTurns) => {
@@ -70,7 +78,7 @@ function App() {
           <Player editablename="Player 1" symbol="X" isActive={activeplayer === 'X'} />
           <Player editablename="Player 2" symbol="O" isActive={activeplayer === 'O'} />
         </ol>
-        {Winner && <p>You Won, {Winner}!</p>}
+        {(Winner || hasDraw) && <GameOver Winner={Winner}/>}
         <GameBoard
           onSelectSquare={handleSelect}
           board={gameBoard} />
