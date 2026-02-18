@@ -23,6 +23,11 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
   // const [activeplayer,setActivePlayer] = useState('X');
 
+  
+
+  const activeplayer = deriveActivePLayer(gameTurns);
+
+
   let gameBoard = initialGame;
 
   for (const turn of gameTurns) {
@@ -31,8 +36,6 @@ function App() {
 
     gameBoard[row][col] = Player;
   }
-
-  const activeplayer = deriveActivePLayer(gameTurns);
 
   let Winner;
   for (const combination of WINNING_COMBINATIONS) {
@@ -70,7 +73,7 @@ function App() {
         {Winner && <p>You Won, {Winner}!</p>}
         <GameBoard
           onSelectSquare={handleSelect}
-          board={gameTurns} />
+          board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
     </main>

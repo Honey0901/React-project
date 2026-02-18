@@ -15,7 +15,6 @@ export default function GameBoard({onSelectSquare, board}) {
 //     onSelectSquare();
 // }
     
-    
     return <ol id="game-board">
         {board.map((row, rowIndex) => (
             <li key={rowIndex}>
